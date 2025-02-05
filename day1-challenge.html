@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 소개</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body:not(a):not(.badge) { color: #1d1d1f; } /* 기본 텍스트 색상 */
+        a { color: #ff007f; } /* 링크 색상 */
+        ul.square { list-style-type: square;}
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4 text-center">
+                <strong>프로젝트 아이디어 소개</strong>
+            </h1>
+        </div>
+
+        <div class="card-columns" id="itemList"></div>
+
+        <script>
+            const jsonData = [
+                                {
+                                "title": "환경 보호 앱 개발",
+                                "description": "사용자가 탄소 발자국을 줄이는 데 도움을 주는 앱입니다.",
+                                "skills": ["HTML", "CSS", "JavaScript"],
+                                "duration": "3개월"
+                                },
+                                {
+                                "title": "AI 기반 번역 도구",
+                                "description": "실시간으로 언어를 번역해주는 웹 애플리케이션.",
+                                "skills": ["Python", "TensorFlow", "JavaScript"],
+                                "duration": "6개월"
+                                }
+                            ];
+        
+            document.addEventListener("DOMContentLoaded", function () {
+                const itemList = document.getElementById('itemList');
+        
+                jsonData.forEach(item => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = "col"; // Bootstrap grid column
+        
+                    let skillList = "";
+                    item.skills.forEach(skills => {
+                        skillList += `<span class="badge badge-primary">${skills}</span>`;
+                    });
+        
+                    itemDiv.innerHTML = `
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h4 class="card-title"><b>${item.title}</b></h4>
+                                <p class="card-text mt-n2"><b class="text-fuchsia-300">설명:</b> ${item.description}</p>
+                                <p class="card-text mt-0"><b class="text-fuchsia-300">예상 개발 기간:</b> ${item.duration}</p>
+                                <p class="card-text mt-0 mb-0"><b class="text-fuchsia-300">필요 스택:</b>${skillList}</p>
+                            </div>
+                        </div>
+                    `;
+                    itemList.appendChild(itemDiv);
+                });
+            });
+        </script>
+    </div>
+</body>
+
+</html>
